@@ -7,7 +7,7 @@ Email: gr8tech01@gmail.com
 `If` statements; Comparison of numbers
 '''
 
-def te(num1, num2, num3):
+def number_match(num1, num2, num3):
 	'''
 	Functions checks if 2 or more of the given numbers are equal
 	Args:
@@ -16,9 +16,9 @@ def te(num1, num2, num3):
 	Returns:
 		True if 2 or more numbers are equal, False otherwise
 	Examples:
-		te(1,2,1) returns True
-		te(1,2,"1") returns True
-		te(1,2,3) return False
+		number_match(1,2,1) returns True
+		number_match(1,2,"1") returns True
+		number_match(1,2,3) return False
 	Logic:
 		There are three posibilities
 		1. num1 is equal to num2 OR
@@ -33,8 +33,8 @@ def te(num1, num2, num3):
 
 # Function tests
 # Returns False
-print(te(1,2,3))
+print(number_match(1,2,3))
 # Returns True
-print(te(1,2,1))
+print(number_match(1,2,1))
 #Returns True
-print(te("5",6,5)) 
+print(number_match("5",6,5)) 
