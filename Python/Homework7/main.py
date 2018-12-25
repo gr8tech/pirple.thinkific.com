@@ -4,7 +4,7 @@ Course: Python is Easy @ pirple
 Author: Moosa
 Email: gr8tech01@gmail.com
 
-Use a dictionary to list characteristics of my favourite song
+Use a dictionary to store characteristics of my favourite song
 '''
 
 # Dictionary to hold song characteristics
