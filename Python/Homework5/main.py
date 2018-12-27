@@ -20,7 +20,7 @@ def FizzBuzzPrime():
 		3 is a prime number and will also generate "Fizz"
 		Otherwise, any Fizz, Buzz or FizzBuzz cannot be a prime number
 	'''
-	for i in range(1,101):
+	for i in range(1,4):
 		if i % 15 == 0:
 			print("FizzBuzz")
 		elif i % 5 == 0:
