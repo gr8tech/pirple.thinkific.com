@@ -50,6 +50,7 @@ def drawKeyPad(alphabet=string.ascii_uppercase):
 		else:
 			print("       │   │   │ {} │ {} │   │   │".format(*letters))
 			print("       └───┴───┴───┴───┴───┴───┘")
+	print()
 
 drawDisplay("HELLO WORLD")
 drawKeyPad()
