@@ -17,6 +17,7 @@ from termcolor import cprint, colored
 │   │   │ Y │ Z │   │   │
 └───┴───┴───┴───┴───┴───┘
 '''
+
 def centerWord(word):
 	displayLen = 18
 	left = 0

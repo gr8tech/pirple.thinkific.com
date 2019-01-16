@@ -4,135 +4,9 @@ import json
 import random
 from termcolor import cprint, colored
 from board import *
+from image import gameImages, gameTries
 
-picture6 = r'''
-                  Hangman v1.0
-                      ▄▄▄▄▄▄▄▄▄▄▄▄           
-                       ║         █                  
-                      ─╨─        █           
-                     ─○─○─       █           
-                     ──°──       █           
-                     ─═══─       █           
-                     ╪╪╪╪╪       █           
-                   ─────────     █                
-                 ── ─────── ──   █           
-                ──  ───────  ──  █                    
-                ──  ───────  ──  █                   
-                    ───────      █           
-                   ───  ───      █           
-                   ──    ──      █           
-                  ──      ──     █           
-                                 █           
-                                 █                    
-               ███████████████████                                    
-'''
 
-picture5 = r'''
-                  Hangman v1.0
-                      ▄▄▄▄▄▄▄▄▄▄▄▄           
-                       ║         █                  
-                      ─╨─        █           
-                     ─○─○─       █           
-                     ──°──       █           
-                     ─═══─       █           
-                     ╪╪╪╪╪       █           
-                   ─────────     █                
-                 ── ─────── ──   █           
-                ──  ───────  ──  █                    
-                ──  ───────  ──  █                   
-                    ───────      █           
-                   ───  ───      █           
-                   ──    ──      █           
-                  ──      ──     █           
-                 ▐▀▀▀▀▀▀▀▀▀▀▌    █           
-                 ▐          ▌    █                    
-               ███████████████████                                    
-'''
-
-picture4 = r'''
-                  Hangman v1.0
-                      ▄▄▄▄▄▄▄▄▄▄▄▄           
-                       ║         █                  
-                      ─╨─        █           
-                     ─○─○─       █           
-                     ──°──       █           
-                     ─═══─       █           
-                      ───        █           
-                   ─────────     █                
-                 ── ─────── ──   █           
-                ──  ───────  ──  █                    
-                ──  ───────  ──  █                   
-                    ───────      █           
-                   ───  ───      █           
-                   ──    ──      █           
-                  ──      ──     █           
-                 ▐▀▀▀▀▀▀▀▀▀▀▌    █           
-                 ▐          ▌    █                    
-               ███████████████████                                    
-'''
-picture3 = r'''
-                  Hangman v1.0
-                      ▄▄▄▄▄▄▄▄▄▄▄▄           
-                                 █                  
-                      ───        █           
-                     ─○─○─       █           
-                     ──°──       █           
-                     ─═══─       █           
-                      ───        █           
-                   ─────────     █                
-                 ── ─────── ──   █           
-                ──  ───────  ──  █                    
-                ──  ───────  ──  █                   
-                    ───────      █           
-                   ───  ───      █           
-                   ──    ──      █           
-                  ──      ──     █           
-                 ▐▀▀▀▀▀▀▀▀▀▀▌    █           
-                 ▐          ▌    █                    
-               ███████████████████                                    
-'''
-picture2 = r'''
-                  Hangman v1.0
-                                 
-                                 █                  
-                      ───        █           
-                     ─○─○─       █           
-                     ──°──       █           
-                     ─═══─       █           
-                      ───        █           
-                   ─────────     █                
-                 ── ─────── ──   █           
-                ──  ───────  ──  █                    
-                ──  ───────  ──  █                   
-                    ───────      █           
-                   ───  ───      █           
-                   ──    ──      █           
-                  ──      ──     █           
-                 ▐▀▀▀▀▀▀▀▀▀▀▌    █           
-                 ▐          ▌    █                    
-               ███████████████████                                    
-'''
-picture1 = r'''
-                  Hangman v1.0
-                                 
-                                                  
-                      ───                  
-                     ─○─○─                 
-                     ──°──                  
-                     ─═══─                  
-                      ───                   
-                   ─────────                     
-                 ── ─────── ──              
-                ──  ───────  ──                      
-                ──  ───────  ──                     
-                    ───────                 
-                   ───  ───                 
-                   ──    ──                 
-                  ──      ──                
-                 ▐▀▀▀▀▀▀▀▀▀▀▌               
-                 ▐          ▌                        
-               ██████████████████                                    
-'''
 class HangMan:
 
 	def __init__(self):
@@ -142,12 +16,10 @@ class HangMan:
 		self.orgWord = ""
 		self.translation = ""
 		self.ALPHABETS = [letter for letter in string.ascii_uppercase]
-		self._tries = 7
 		self.entry = []
-		self.images = [picture6, picture5, picture4, picture3, picture2, picture1, picture1]
-		self.colors = ["red","magenta", "magenta", "cyan","cyan","green", "green"]
+		self.images = gameImages
+		self._tries = gameTries
 		self.currentImage = self.images[-1]
-		self.currentColor = self.colors[-1]
 		self.getWord()
 
 	
@@ -158,11 +30,10 @@ class HangMan:
 	@tries.setter	
 	def tries(self,x):
 		self._tries = x
-		self.currentImage = self.images.pop()	
-		self.currentColor = self.colors.pop()
+		self.currentImage = self.images.pop()
 
 	def drawImage(self):
-		cprint(self.currentImage,self.currentColor)
+		cprint(self.currentImage[0],self.currentImage[1])
 
 	def getWord(self):
 		with open("dict.json", encoding="utf8") as f:
@@ -255,14 +126,3 @@ if __name__ == "__main__":
 		else:
 			game.displayStatus()
 			print("{} - invalid input. Choose from available letters\n".format(choice))
-
-
-
-
-
-
-
-
-
-
-
