@@ -127,6 +127,3 @@ picture1 = r'''
                ██████████████████                                    
 '''
 
-gameImages = list(zip([picture6, picture5, picture4, picture3, picture2, picture1, picture1],
-					["red","magenta", "magenta", "cyan","cyan","green", "green"]))
-gameTries = len(gameImages)

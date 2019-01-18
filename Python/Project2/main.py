@@ -5,7 +5,7 @@ import json
 import random
 from termcolor import cprint, colored
 from board import *
-from image import gameImages, gameTries
+from image import *
 
 
 class HangMan:
@@ -19,11 +19,17 @@ class HangMan:
 		self.translation = ""
 		self.ALPHABETS = [letter for letter in string.ascii_uppercase]
 		self.entry = []
-		self.images = gameImages
-		self._tries = gameTries
-		self.currentImage = self.images[-1]
+
+		self.gameImages = list(zip([picture6, picture5, picture4, picture3, picture2, picture1, picture1],
+					["red","magenta", "magenta", "cyan","cyan","green", "green"]))
+		self._tries = len(self.gameImages)
+		self.currentImage = self.gameImages[-1]
+		
 		self.getWord()
 		os.system('cls')
+
+
+		self.displayStatus()
 
 	
 	@property
@@ -33,7 +39,7 @@ class HangMan:
 	@tries.setter	
 	def tries(self,x):
 		self._tries = x
-		self.currentImage = self.images.pop()
+		self.currentImage = self.gameImages.pop()
 
 	def drawImage(self):
 		cprint(self.currentImage[0],self.currentImage[1])
@@ -105,8 +111,6 @@ if __name__ == "__main__":
 
 	game = HangMan(args.showHints, args.singleGame)	
 
-	game.displayStatus()
-
 	#game loop
 	while True:
 		choice = input("Enter a letter: ").strip().upper()
@@ -124,7 +128,11 @@ if __name__ == "__main__":
 				game.removeAcceptedChoice(choice)
 				if game.displayStatus():
 					cprint("YOU WIN","green",attrs=['reverse'])
-					break
+					if game.singleGame:
+						break
+					else:
+						input("Press Enter to continue...")
+						game = HangMan(game.showHints, game.singleGame)
 			else:
 				game.tries -= 1
 				game.displayStatus()
@@ -132,7 +140,11 @@ if __name__ == "__main__":
 					game.entry = game.word
 					game.displayStatus()
 					cprint("YOU LOSE","red" , attrs=['reverse'])
-					break
+					if game.singleGame:
+						break
+					else:
+						input("Press Enter to continue...")
+						game = HangMan(game.showHints, game.singleGame)
 		else:
 			game.displayStatus()
 			print("{} - invalid input. Choose from available letters\n".format(choice))
