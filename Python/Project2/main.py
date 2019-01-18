@@ -1,3 +1,4 @@
+import argparse
 import string
 import os
 import json
@@ -9,8 +10,9 @@ from image import gameImages, gameTries
 
 class HangMan:
 
-	def __init__(self):
-		self.showHints = False
+	def __init__(self, showHints, singleGame):
+		self.showHints = showHints
+		self.singleGame = singleGame
 		self.wordFile = ""
 		self.word = ""
 		self.orgWord = ""
@@ -21,6 +23,7 @@ class HangMan:
 		self._tries = gameTries
 		self.currentImage = self.images[-1]
 		self.getWord()
+		os.system('cls')
 
 	
 	@property
@@ -91,9 +94,16 @@ class HangMan:
 				self.ALPHABETS[idx] = " "
 				break	
 
-if __name__ == "__main__":
 
-	game = HangMan()	
+if __name__ == "__main__":
+	parser = argparse.ArgumentParser()
+	parser.add_argument(
+		'--hints', dest='showHints',  action='store_true',  default=False, help='display hints')
+	parser.add_argument(
+		'--single', dest='singleGame',  action='store_true',  default=False, help='play single game')
+	args = parser.parse_args()
+
+	game = HangMan(args.showHints, args.singleGame)	
 
 	game.displayStatus()
 

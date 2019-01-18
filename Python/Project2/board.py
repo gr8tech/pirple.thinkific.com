@@ -53,5 +53,6 @@ def drawKeyPad(alphabet=string.ascii_uppercase):
 			print("       └───┴───┴───┴───┴───┴───┘")
 	print()
 
-drawDisplay("HELLO WORLD")
-drawKeyPad()
+if __name__ == "__main__":
+	drawDisplay("HELLO WORLD")
+	drawKeyPad()
