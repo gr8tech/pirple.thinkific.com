@@ -10,7 +10,9 @@ from image import *
 
 class HangMan:
 
-	def __init__(self, showHints, singleGame):
+	def __init__(self, showHints=False, singleGame=False, gamesPlayed=0, gamesWon=0):
+		self.gamesPlayed = gamesPlayed
+		self.gamesWon = gamesWon
 		self.showHints = showHints
 		self.singleGame = singleGame
 		self.wordFile = ""
@@ -63,6 +65,8 @@ class HangMan:
 				i = 0
 		print()
 		cprint("{} Wrong attemps left".format(self.tries),"red")
+		cprint("{} Games Played".format(self.gamesPlayed),"red")
+		cprint("{} Games Won".format(self.gamesWon),"red")
 		print()
 
 	def displayStatus(self):
@@ -127,16 +131,19 @@ if __name__ == "__main__":
 				game.entry.append(choice)
 				game.removeAcceptedChoice(choice)
 				if game.displayStatus():
+					game.gamesWon += 1
+					game.gamesPlayed += 1
 					cprint("YOU WIN","green",attrs=['reverse'])
 					if game.singleGame:
 						break
 					else:
 						input("Press Enter to continue...")
-						game = HangMan(game.showHints, game.singleGame)
+						game = HangMan(game.showHints, game.singleGame, game.gamesPlayed, game.gamesWon)
 			else:
 				game.tries -= 1
 				game.displayStatus()
 				if game.tries == 0:
+					game.gamesPlayed += 1
 					game.entry = game.word
 					game.displayStatus()
 					cprint("YOU LOSE","red" , attrs=['reverse'])
@@ -144,7 +151,7 @@ if __name__ == "__main__":
 						break
 					else:
 						input("Press Enter to continue...")
-						game = HangMan(game.showHints, game.singleGame)
+						game = HangMan(game.showHints, game.singleGame, game.gamesPlayed, game.gamesWon)
 		else:
 			game.displayStatus()
 			print("{} - invalid input. Choose from available letters\n".format(choice))
