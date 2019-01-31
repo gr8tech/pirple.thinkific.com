@@ -1,3 +1,6 @@
+'''
+Hangman pictures to be displayed in the game
+'''
 picture6 = r'''
                   Hangman v1.0
                       ▄▄▄▄▄▄▄▄▄▄▄▄           

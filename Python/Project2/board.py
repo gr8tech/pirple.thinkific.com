@@ -1,9 +1,7 @@
-import string
-from termcolor import cprint, colored
-
 '''
+GAME DISPLAY WITH KEYPAD TO SHOW AVAILABLE OPTIONS
 ╔═══════════════════════╗
-║                       ║
+║        W O R D        ║
 ╚═══════════════════════╝
 ┌───┬───┬───┬───┬───┬───┐
 │ A │ B │ C │ D │ E │ F │
@@ -18,7 +16,18 @@ from termcolor import cprint, colored
 └───┴───┴───┴───┴───┴───┘
 '''
 
+import string
+from termcolor import cprint, colored
+
+
 def centerWord(word):
+	'''
+	Adds blanks to centre the word shown in the Game Display
+	Args:
+		word - word to be displayed
+	Returns:
+		word with fillers before and after
+	'''
 	displayLen = 18
 	left = 0
 	right = 0
@@ -31,12 +40,22 @@ def centerWord(word):
 	return [" "] * left + [letter for letter in word] + [" "] * right
 
 def drawDisplay(word):
+	'''
+	Draws the game display and inserts the WORD
+	Args:
+		word - word to be displayed
+	'''
 	word = centerWord(word)
 	print("╔═════════════════════════════════════╗")
 	print("║ {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} ║".format(*word))
 	print("╚═════════════════════════════════════╝")
 
 def drawKeyPad(alphabet=string.ascii_uppercase):
+	'''
+	Draws the keypad showing available options
+	Args:
+		alphabet - letters available for selection
+	'''
 	alphabet = [letter for letter in alphabet]
 	print()
 	print("CHOOSE FORM THE FOLLOWING LETTERS")
@@ -53,6 +72,7 @@ def drawKeyPad(alphabet=string.ascii_uppercase):
 			print("       └───┴───┴───┴───┴───┴───┘")
 	print()
 
+# testing
 if __name__ == "__main__":
 	drawDisplay("HELLO WORLD")
 	drawKeyPad()
